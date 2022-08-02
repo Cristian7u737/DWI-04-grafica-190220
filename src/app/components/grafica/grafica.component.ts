@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,10 +11,12 @@ export class GraficaComponent implements OnInit {
     { data: [0, 0, 0, 0], label: 'Ventas' },
   ];
   public lineChartLabels: Array<any> = ['Enero', 'Febrero', 'Marzo', 'Abril'];
-  constructor() {}
+  constructor(
+    private http: HttpClient
+  ) {}
 
   ngOnInit() {
-    setInterval(() => {
+    /* setInterval(() => {
       const newData = [
         Math.round(Math.random() * 100),
         Math.round(Math.random() * 100),
@@ -23,6 +26,13 @@ export class GraficaComponent implements OnInit {
       this.lineChartData = [
         {data: newData, label: 'Ventas'}
       ]
-    }, 3000);
+    }, 3000); */
+    this.getData();
+  }
+  getData(){
+    this.http.get('http://localhost:5000/grafica')
+    .subscribe((data: any) =>{
+      this.lineChartData = data;
+    })
   }
 }

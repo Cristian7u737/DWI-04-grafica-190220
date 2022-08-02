@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { NgChartsModule } from 'ng2-charts';
 import { GraficaComponent } from './components/grafica/grafica.component';
-
+import { HttpClientModule} from '@angular/common/http';
 const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
 @NgModule({
   declarations: [
@@ -15,7 +15,8 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
   imports: [
     BrowserModule,
     SocketIoModule.forRoot(config),
-    NgChartsModule
+    NgChartsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
